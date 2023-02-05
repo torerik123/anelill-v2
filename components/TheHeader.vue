@@ -1,12 +1,25 @@
 <template>
 	<div>
-		<v-app-bar app color="white" elevate-on-scroll fixed :class="customClass">
+		<v-app-bar 
+			app 
+			color="white" 
+			elevate-on-scroll 
+			fixed 
+			:class="customClass"
+		>
 			<v-hover v-slot="{ hover }">
-				
-				<v-img class="" :lazy-src="logo" :src="logo" max-height="100" max-width="100" contain
-					:style="hover ? 'cursor: pointer;' : ''" @click="$router.push('/')"></v-img>
+				<!-- TODO 				 -->
+				<!-- <v-img class="" 
+					:lazy-src="logo" 
+					:src="logo" 
+					max-height="100" 
+					max-width="100" 
+					contain
+					:style="hover ? 'cursor: pointer;' : ''" 
+					@click="$router.push('/')">
+				</v-img> -->
 			</v-hover>
-
+<!-- 
 			<v-spacer></v-spacer>
 			<v-toolbar-title class="" v-if="$vuetify.display.smAndUp">
 				<v-btn text tile @click="$router.push('/about')">
@@ -23,16 +36,17 @@
 					Contact
 				</v-btn>
 			</v-toolbar-title>
-			<v-app-bar-nav-icon v-if="$vuetify.display.xs" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+			<v-app-bar-nav-icon v-if="$vuetify.display.xs" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
 		</v-app-bar>
 
-		<v-navigation-drawer app v-model="drawer" temporary>
+		<!-- <v-navigation-drawer app v-model="drawer" temporary>
 			<v-list>
 				<v-list-item>
 					<v-list-item-title>
 						<v-hover v-slot="{ hover }">
 							<v-img :style="hover ? 'cursor: pointer;' : ''" @click="$router.push('/')" class="mx-auto"
-								:src="logo" max-height="100" max-width="100" contain></v-img>
+								:src="logo" max-height="100" max-width="100" contain>
+							</v-img>
 						</v-hover>
 					</v-list-item-title>
 				</v-list-item>
@@ -53,11 +67,13 @@
 					</v-list-item-title>
 				</v-list-item>
 			</v-list>
-		</v-navigation-drawer>
+		</v-navigation-drawer> -->
 	</div>
 </template>
 
 <script>
+import { useMainStore } from '@/stores/main'
+import { mapState } from 'pinia'
 export default {
 	name: "TheHeader",
 
@@ -77,6 +93,8 @@ export default {
 	},
 
 	computed: {
+		...mapState(useMainStore, ['doubleCount']),
+
 		isHomePage() {
 			const route = useRoute();
 			return route.path === "/"
