@@ -7,25 +7,23 @@
 			fixed 
 			:class="customClass"
 		>
-		
-		
-		<!-- <v-hover>
-			<template v-slot:default="{ isHovering, props }">
-				<v-img
-					v-bind="props"
-					class="" 
-					:lazy-src="logo" 
-					:src="logo" 
-					max-height="100" 
-					max-width="100" 
-					contain
-					:style="isHovering ? 'cursor: pointer;' : ''" 
-					@click="$router.push('/')">
-				</v-img>
-			</template>
-		</v-hover> -->
+			<v-hover>
+				<template v-slot:default="{ isHovering, props }">
+					<v-img
+						v-bind="props"
+						class="" 
+						:lazy-src="logo" 
+						:src="logo" 
+						max-height="100" 
+						max-width="100" 
+						contain
+						:style="isHovering ? 'cursor: pointer;' : ''" 
+						@click="$router.push('/')">
+					</v-img>
+				</template>
+			</v-hover>
 	
-			<!-- <v-spacer></v-spacer>
+			<v-spacer></v-spacer>
 			<v-toolbar-title class="" v-if="$vuetify.display.smAndUp">
 				<v-btn text tile @click="$router.push('/about')">
 					About
@@ -41,10 +39,10 @@
 					Contact
 				</v-btn>
 			</v-toolbar-title>
-			<v-app-bar-nav-icon v-if="$vuetify.display.xs" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
+			<v-app-bar-nav-icon v-if="$vuetify.display.xs" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 		</v-app-bar>
 
-		<!-- <v-navigation-drawer app v-model="drawer" temporary>
+		<v-navigation-drawer app v-model="drawer" temporary>
 			<v-list>
 				<v-list-item>
 					<v-list-item-title>
@@ -72,7 +70,7 @@
 					</v-list-item-title>
 				</v-list-item>
 			</v-list>
-		</v-navigation-drawer> -->
+		</v-navigation-drawer>
 	</div>
 </template>
 
@@ -108,7 +106,6 @@ export default {
 </script>
 
 <style scoped>
-
 /deep/ .v-toolbar__content {
 	padding: 0px !important;
 }

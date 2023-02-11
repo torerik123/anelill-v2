@@ -3,6 +3,7 @@ export default defineNuxtConfig({
 	build: {
 	  transpile: ['vuetify'],
 	},
+
 	vite: {
 	  define: {
 		'process.env.DEBUG': false,
@@ -14,8 +15,7 @@ export default defineNuxtConfig({
 		  '@pinia/nuxt',
 		  {
 			autoImports: [
-			  // automatically imports `defineStore`
-			  'defineStore', // import { defineStore } from 'pinia'
+			  'defineStore',
 			],
 		  },
 		],
