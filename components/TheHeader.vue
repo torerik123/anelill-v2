@@ -1,26 +1,31 @@
 <template>
 	<div>
-		<v-app-bar 
+		<v-app-bar
 			app 
 			color="white" 
 			elevate-on-scroll 
 			fixed 
 			:class="customClass"
 		>
-			<v-hover v-slot="{ hover }">
-				<!-- TODO 				 -->
-				<!-- <v-img class="" 
+		
+		
+		<!-- <v-hover>
+			<template v-slot:default="{ isHovering, props }">
+				<v-img
+					v-bind="props"
+					class="" 
 					:lazy-src="logo" 
 					:src="logo" 
 					max-height="100" 
 					max-width="100" 
 					contain
-					:style="hover ? 'cursor: pointer;' : ''" 
+					:style="isHovering ? 'cursor: pointer;' : ''" 
 					@click="$router.push('/')">
-				</v-img> -->
-			</v-hover>
-<!-- 
-			<v-spacer></v-spacer>
+				</v-img>
+			</template>
+		</v-hover> -->
+	
+			<!-- <v-spacer></v-spacer>
 			<v-toolbar-title class="" v-if="$vuetify.display.smAndUp">
 				<v-btn text tile @click="$router.push('/about')">
 					About
@@ -74,14 +79,13 @@
 <script>
 import { useMainStore } from '@/stores/main'
 import { mapState } from 'pinia'
+
 export default {
 	name: "TheHeader",
 
 	data() {
 		return {
 			drawer: false,
-		    // logo: this.$store.getters.logo,
-		    logo: false,
 		}
 	},
 
@@ -93,7 +97,7 @@ export default {
 	},
 
 	computed: {
-		...mapState(useMainStore, ['doubleCount']),
+		...mapState(useMainStore, ['logo']),
 
 		isHomePage() {
 			const route = useRoute();
