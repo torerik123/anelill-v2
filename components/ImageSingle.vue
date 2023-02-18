@@ -2,14 +2,12 @@
 	<v-card
 		height="100%"
 		elevation="0"
-		v-intersect.quiet="onIntersect"
 		:class="$vuetify.display.smAndDown ? 'px-2 pb-4': 'px-10 pb-12'"
 	>
 		<v-sheet 
 			width="auto" 
 			max-width="300" 
 			class="ma-0 mx-auto"
-			:class="isIntersecting ? 'animated fadeInUp' : '' "
 		>
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
@@ -58,7 +56,6 @@ export default {
 
 	data() {
 		return  {
-			isIntersecting: false,
 			scrollDown: null,
 		}
 	},
@@ -71,20 +68,6 @@ export default {
 		viewImg() {
 			const index = this.images.indexOf(this.image)
 			this.$emit("viewImg", index)
-		},
-		
-		onIntersect (entries, observer) {
-			if (entries[0].boundingClientRect.top < 0) {
-				if (!entries[0].isIntersecting) {
-					// left viewport at the top edge, hence scroll direction is down
-					this.isIntersecting = entries[0].isIntersecting
-				} 
-			} else {
-				this.isIntersecting = entries[0].isIntersecting // trigger on inital page load
-			}
-      
-
-
 		},
 	}
 }

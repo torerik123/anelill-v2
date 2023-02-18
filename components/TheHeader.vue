@@ -9,20 +9,20 @@
 		>
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
-					<v-img
-						v-bind="props"
-						class="" 
-						:lazy-src="logo" 
-						:src="logo" 
-						max-height="100" 
-						max-width="100" 
-						contain
-						:style="isHovering ? 'cursor: pointer;' : ''" 
-						@click="$router.push('/')">
-					</v-img>
+						<v-img
+							v-bind="props"
+							class="" 
+							:lazy-src="logo" 
+							:src="logo" 
+							max-height="100" 
+							max-width="100" 
+							contain
+							:style="isHovering ? 'cursor: pointer;' : ''" 
+							@click="$router.push('/')">
+						</v-img>
 				</template>
 			</v-hover>
-	
+
 			<v-spacer></v-spacer>
 			<v-toolbar-title class="" v-if="$vuetify.display.smAndUp">
 				<v-btn text tile @click="$router.push('/about')">
