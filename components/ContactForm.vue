@@ -18,7 +18,6 @@
 			<v-sheet :width="$vuetify.display.smAndDown ? '100%' : '50%' " class="mx-auto" >
 				<v-form 
 					ref="form"
-					@submit.prevent="submitForm"
 					class="mx-auto mb-2" 
 				>
 					<v-row dense no-gutters class="">
@@ -68,7 +67,7 @@
 							<v-btn
 								large
 								:block="$vuetify.display.smAndDown"
-								type="submit"
+								@click="submitForm"
 								color="primary"
 								class=""
 							>
@@ -106,8 +105,8 @@ export default {
 	},
 
 	methods: {
-		submitForm() {
-			let valid = this.$refs.form.validate()
+		async submitForm() {
+			const { valid } = await this.$refs.form.validate()
 
 			if (valid) {
 				const data = { 
@@ -115,21 +114,22 @@ export default {
 					email: this.email, 
 					message: this.message, 
 				}
-				
-				this.$axios.post("https://formspree.io/f/xzbwwdzy", {
-					body: data,
+
+				const { data: response, error } = await useFetch("https://formspree.io/f/xzbwwdzy", {
+					method: "POST",
 					headers: {
          			   'Accept': 'application/json'
-        				}
-				}).then(response => {
-					if (response.status == 200) {
-						this.messageSent = true
-						this.$refs.form.reset()
-					}
-				}).catch(error => {
+					},
+					body: data,
+				})
+
+				if (response.value) {
+					this.messageSent = true
+					this.$refs.form.reset()
+				} else {
 					this.messageDeliveredText = "Something went wrong! Please try again later."
 					console.log(error)
-				})
+				}
 			}
 		}
 	}
