@@ -9,7 +9,8 @@
 		<v-sheet id="about" height="auto">
 			<v-row dense no-gutters>
 				<v-col cols="12" class="text-center">
-					<h2 class="py-10">{{ text }}</h2>
+						<h2 v-if="text.length" class="py-10">{{ text }}</h2>
+						<h2 v-else class="py-10">{{ tagline }}</h2>
 				</v-col>
 			</v-row>
 		</v-sheet>
@@ -20,15 +21,21 @@
 export default {
 	name: "SectionHeader",
 
+	props: {
+		text: {
+			type: String,
+			default: "",
+		},
+	},
+
 	data() {
 		return {
 			isActive: false,
-			text: ""
+			tagline: "",
 		}
 	},
 
 	created() {
-		// get all section headers
 		const query = `{
 			home {
 				tagline
@@ -38,7 +45,7 @@ export default {
 		const { data: response } = useGraphqlQuery({ query })
 		
 		if (response.value) {
-			this.text = response.value.home.tagline
+			this.tagline = response.value.home.tagline
 		}
 	}
 }

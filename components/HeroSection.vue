@@ -13,6 +13,7 @@
 				max-height="60vh"
 				:src="image"
 				transition="slide-y-transition"
+				cover
 			>
 				<template #placeholder>
 					<div class="d-flex align-center justify-center fill-height fill-width">
