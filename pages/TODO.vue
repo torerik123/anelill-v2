@@ -1,5 +1,6 @@
 <template>
 	<v-list>
+		<v-list-item>Font type</v-list-item>
 		<v-list-item>Placeholder images/color block</v-list-item>
 		<v-list-item>Use optimized images -> webp from datoCMS => datoCMS img component</v-list-item>
 		<v-list-item>Lazy load images --> get sizes, srcet</v-list-item>
