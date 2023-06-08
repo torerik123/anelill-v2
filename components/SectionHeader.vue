@@ -20,17 +20,26 @@
 export default {
 	name: "SectionHeader",
 
-	props: {
-		text: {
-			type: String,
-			default: "",
-		}
-	},
-
 	data() {
 		return {
 			isActive: false,
+			text: ""
 		}
 	},
+
+	created() {
+		// get all section headers
+		const query = `{
+			home {
+				tagline
+			}
+		}
+		`
+		const { data: response } = useGraphqlQuery({ query })
+		
+		if (response.value) {
+			this.text = response.value.home.tagline
+		}
+	}
 }
 </script>

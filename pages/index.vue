@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<!-- Hero image -->
-		<HeroSection :image="heroImg"></HeroSection>
+		<HeroSection></HeroSection>
 
 		<!-- About  -->
-		<SectionHeader :text="introText"></SectionHeader>
+		<SectionHeader></SectionHeader>
 		
 		<!-- Gallery  -->
 		<ImageGallery></ImageGallery>
@@ -23,10 +23,6 @@ export default {
 
 	computed: {
 		...mapState(useMainStore, ['headerImages', 'introText']),
-
-		heroImg() {
-			return this.headerImages.home; 
-		},
 	},
 }
 </script>

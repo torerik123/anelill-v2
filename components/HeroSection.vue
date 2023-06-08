@@ -13,10 +13,15 @@
 				max-height="60vh"
 				:src="image"
 				transition="slide-y-transition"
-				v-show="show"
 			>
-				<template v-slot:placeholder>
-					<v-sheet color="gray" height="100%" width="100%"></v-sheet>
+				<template #placeholder>
+					<div class="d-flex align-center justify-center fill-height fill-width">
+						<v-progress-circular
+							v-if="!image.length"
+							color="grey-lighten-4"
+							indeterminate
+						></v-progress-circular>
+					</div>
 				</template>
 			</v-img>
 		</v-sheet>
@@ -30,16 +35,36 @@ export default {
 	data() {
 		return {
 			isActive: false,
-			show: false
+			show: false,
+			image: "",
 		}
 	},
 
-	props: {
-		image: {
-			type: String,
-			default: false,
-		},
+	async created() {
+		const query = `
+			query getHeaderImg {
+					home {
+						logo {
+							responsiveImage(imgixParams: {auto: enhance}) {
+								src
+							}
+						}
+						tagline
+						bannerImage {
+						responsiveImage(imgixParams: {auto: format}) {
+								src
+							}
+						}
+					}
+				}`
+
+		const { data:response } = await useGraphqlQuery({ query });
+
+		if (response.value) {
+			this.image = response.value.home.bannerImage.responsiveImage.src
+		}
 	},
+
 
 	mounted() {
 		this.show = true

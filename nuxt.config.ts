@@ -5,21 +5,27 @@ export default defineNuxtConfig({
 	},
 
 	vite: {
-	  define: {
-		'process.env.DEBUG': false,
-	  },
+		define: {
+			'process.env.DEBUG': false,
+	  	},
 	},
+	
 	modules: [
-		// ...
 		[
-		  '@pinia/nuxt',
-		  {
-			autoImports: [
-			  'defineStore',
-			],
-		  },
+			'@pinia/nuxt',
+			{
+				autoImports: [
+					'defineStore',
+				],
+			},
 		],
-	  ],
+	],
+
+	imports: {
+		// autimports useStore()
+        dirs: ['./stores/*', ]
+    },
+
 	runtimeConfig: {
 		public: {
 			datoCmsToken: process.env.DATO_CMS_TOKEN,
