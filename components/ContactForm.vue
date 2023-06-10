@@ -85,9 +85,8 @@
 export default {
 	name: "ContactForm",
 
-	data() {
-		return {
-			isActive: false,
+	data:() => ({
+		isActive: false,
 			rules: {
 				required: value => !!value || 'Field can not be empty.',
 				email: value => {
@@ -101,8 +100,7 @@ export default {
 			message: "",
 			messageSent: false,
 			messageDeliveredText: "Message sent!",
-		}
-	},
+	}),
 
 	methods: {
 		async submitForm() {

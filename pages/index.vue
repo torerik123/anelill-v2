@@ -15,15 +15,8 @@
 </template>
 
 <script>
-import { useMainStore } from '@/stores/main'
-import { mapState } from 'pinia'
-
 export default {
 	name: "Index",
-
-	computed: {
-		...mapState(useMainStore, ['headerImages', 'introText']),
-	},
 }
 </script>
 

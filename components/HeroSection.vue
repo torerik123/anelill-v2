@@ -33,13 +33,11 @@
 export default {
 	name: "HeroSection",
 
-	data() {
-		return {
-			isActive: false,
-			show: false,
-			image: "",
-		}
-	},
+	data:() => ({
+		isActive: false,
+		show: false,
+		image: "",
+	}),
 
 	async created() {
 		const query = `

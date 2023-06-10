@@ -55,18 +55,17 @@ export default {
 		},
 	},
 
-	data() {
-		return  {
-			scrollDown: null,
-		}
-	},
+	data:() => ({
+		scrollDown: null,
+	}),
 
-	computed: {
-		...mapState(useMainStore, ['images']),
-	},
+	// computed: {
+	// 	...mapState(useMainStore, ['images']),
+	// },
 
 	methods: {
 		viewImg() {
+			throw new Error("--TODO => viewImg")
 			const index = this.images.indexOf(this.image)
 			this.$emit("viewImg", index)
 		},

@@ -28,12 +28,10 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			isActive: false,
-			tagline: "",
-		}
-	},
+	data:() => ({
+		isActive: false,
+		tagline: "",
+	}),
 
 	created() {
 		const query = `{

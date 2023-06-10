@@ -24,14 +24,12 @@
 export default {
 	name: "ImageGallery",
 
-	data() {
-		return {
-			isActive: false,
-			dialog: false,
-			index: 0,
-			images: [],
-		}
-	},
+	data:() => ({
+		isActive: false,
+		dialog: false,
+		index: 0,
+		images: [],
+	}),
 
 	async created() {
 		const query = `

@@ -95,13 +95,11 @@
 export default {
 	name: "TheHeader",
 
-	data() {
-		return {
-			drawer: false,
-			logo: "",
-			srcSet: "",
-		}
-	},
+	data:() => ({
+		drawer: false,
+		logo: "",
+		srcSet: "",
+	}),
 
 	async created() {
 		const query = `query logo {
