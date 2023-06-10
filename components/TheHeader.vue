@@ -12,7 +12,6 @@
 					</v-list-item-title>
 				</v-list-item>
 
-				<!-- TODO Center text -->
 				<v-list-item @click="$router.push('/about')">
 					<v-list-item-title style="text-align: center;" class="text-uppercase">
 						About
@@ -37,7 +36,7 @@
 			scroll-behavior="elevate" 
 			fixed 
 			width="100%"
-			:class="$vuetify.display.smAndDown ? 'px-5' : 'px-15'"
+			:class="$vuetify.display.smAndDown ? 'pl-5 pr-2 ' : 'px-15'"
 		>
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
@@ -79,10 +78,12 @@
 				</v-btn>	
 			</ClientOnly>
 
-			<!-- TODO  -->
-			<!-- v-if="$vuetify.display.xs" -->
 			<ClientOnly fallback-tag="span">
-				<v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+				<v-app-bar-nav-icon 
+					v-if="$vuetify.display.xs"  
+					@click.stop="drawer = !drawer"
+					class="mx-0"
+				></v-app-bar-nav-icon>
 			</ClientOnly>
 
 		</v-app-bar>
