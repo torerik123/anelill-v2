@@ -1,14 +1,16 @@
 <template>
 	<div>
 		<div v-if="$vuetify.display.smAndDown">
-			<PageHeader :headerImg="headerImages.about"></PageHeader>
+			<ClientOnly>
+				<PageHeader v-if="headerImg.length" :headerImg="headerImg"></PageHeader>
+			</ClientOnly>
 			<SectionHeader text="About"></SectionHeader>
 	
 			<v-row dense no-gutters>
 				<v-spacer></v-spacer>
 				<v-col :cols="$vuetify.display.mdAndUp ? 7 : 'auto'">
 					<v-card elevation="0" class="px-5">
-						<div v-html="text">
+						<div v-html="aboutText">
 						</div>
 					</v-card>
 				</v-col>
@@ -19,7 +21,7 @@
 		<div v-else>
 			<v-row dense no-gutters>
 				<v-col>
-					<SectionHeader text="About"></SectionHeader>
+						<SectionHeader text="About"></SectionHeader>
 				</v-col>
 			</v-row>
 			<v-row dense no-gutters>
@@ -28,7 +30,7 @@
 						class="overflow-hidden pt-10"
 					>
 						<v-img 
-							:src="headerImages.about"
+							:src="headerImg"
 						>
 						</v-img>
 					</v-sheet>
@@ -44,13 +46,33 @@
 </template>
 
 <script>
-import { useMainStore } from '~~/stores/main';
-import { mapState } from 'pinia';
 export default {
 	name: "About",
 
-	computed: {
-		...mapState(useMainStore, ["headerImages", "aboutText"]),
+	data:() => ({
+		headerImg: "",
+		aboutText: "",
+	}),
+
+	async created() {
+		const query = `
+			query headerImage {
+				about {
+					headerImage {
+						responsiveImage(imgixParams: {auto: format}) {
+						src
+						}
+					}
+					text
+				}
+			}`
+
+		const { data: response } = await useGraphqlQuery({ query })
+
+		if (response.value) {
+			this.headerImg = response.value.about.headerImage.responsiveImage.src
+			this.aboutText = response.value.about.text
+		}
 	},
 }
 </script>
