@@ -1,6 +1,7 @@
 <template>
 	<v-list>
 		<v-list-item>Font type</v-list-item>
+		<v-list-item>Nuxt image</v-list-item>
 		<v-list-item>Placeholder images/color block</v-list-item>
 		<v-list-item>Use optimized images -> webp from datoCMS => datoCMS img component</v-list-item>
 		<v-list-item>Lazy load images --> get sizes, srcet</v-list-item>
@@ -16,7 +17,6 @@
 		-d '{ "status": "error" }' -->
 		
 		<v-list-item>Redirect /admin to datocms</v-list-item>
-		<v-list-item>Use SSR ==> host on vercel</v-list-item>
 		<v-list-item>Loading spinners -> lazy loading osv</v-list-item>
 		<v-list-item>Check everything response</v-list-item>
 		<v-list-item> 

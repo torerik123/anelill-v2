@@ -11,13 +11,14 @@
 		>
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
+					<!-- TODO v-lazy -->
+					<!-- TODO Nuxt image -->
 					<v-img
 						v-bind="props"
 						:style="isHovering ? 'cursor: pointer;' : ''" 
 						@click="viewImg"
 						class=""
-						:lazy-src="image.src"
-						:src="image.src"
+						:src="image.src"	
 						max-width="300"
 						height="auto"
 						contain
