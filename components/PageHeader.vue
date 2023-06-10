@@ -5,6 +5,7 @@
 	>
 		<v-img 
 			:src="headerImg"
+			cover
 		>
 		</v-img>
 	</v-sheet>

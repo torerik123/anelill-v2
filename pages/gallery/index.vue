@@ -1,34 +1,24 @@
 <template>
 	<div>
-		<PageHeader :headerImg="headerImages.gallery"></PageHeader>
+		<ClientOnly>
+			<PageHeader v-if="headerImg" :headerImg="headerImg"></PageHeader>
+		</ClientOnly>
 		<SectionHeader text="Gallery"></SectionHeader>
 		<ImageGallery></ImageGallery>	
 	</div>
 </template>
 
 <script>
-import { mapState } from 'pinia';
-import { useMainStore } from '~~/stores/main';
 export default {
 	name: "Gallery",
 
+	data:() => ({
+		headerImg: false,
+	}),
+
 	async created() {
 		const query = `
-			query galleryImages {
-				allImages {
-					id
-					size
-					sold
-					title
-					description
-					order
-					image {
-						id
-						responsiveImage(imgixParams: {auto: format}) {
-							src
-						}
-					}	
-				}	
+			query headerImage {
 				gallery {
 					headerImage {
 					responsiveImage(imgixParams: {auto: format}) {
@@ -38,10 +28,11 @@ export default {
 				}
 			}`
 
-	},
+		const { data: response } = await useGraphqlQuery({ query })
 
-	computed: {
-		...mapState(useMainStore, ["headerImages"]),
+		if (response.value) {
+			this.headerImg = response.value.gallery.headerImage.responsiveImage.src
+		}
 	},
 }
 </script>
