@@ -15,24 +15,5 @@ export default {
 	data:() => ({
 		headerImg: false,
 	}),
-
-	async created() {
-		const query = `
-			query headerImage {
-				gallery {
-					headerImage {
-					responsiveImage(imgixParams: {auto: format}) {
-						src
-					}
-					}
-				}
-			}`
-
-		const { data: response } = await useGraphqlQuery({ query })
-
-		if (response.value) {
-			this.headerImg = response.value.gallery.headerImage.responsiveImage.src
-		}
-	},
 }
 </script>

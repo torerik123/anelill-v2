@@ -1,6 +1,6 @@
 <template>
 	<v-list>
-		<v-list-item>Populate store with images?</v-list-item>
+		<v-list-item>Populate store with images? page by page basis</v-list-item>
 		<v-list-item>Image sizes</v-list-item>
 		<v-list-item>Font type</v-list-item>
 		<v-list-item>Nuxt image</v-list-item>

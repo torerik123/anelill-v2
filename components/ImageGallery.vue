@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
 export default {
 	name: "ImageGallery",
 
@@ -28,52 +29,11 @@ export default {
 		isActive: false,
 		dialog: false,
 		index: 0,
-		images: [],
 	}),
 
-	async created() {
-		const query = `
-			query galleryImages {
-				allImages {
-					id
-					size
-					sold
-					title
-					description
-					order
-					image {
-						id
-						responsiveImage(imgixParams: {auto: format}) {
-							src
-						}
-					}	
-				}	
-			}`
-
-			const { data: response } = await useGraphqlQuery({ query })
-
-			if (response.value) {
-				const sortedImages = []
-
-				Object.values(response.value.allImages).forEach((item) => {
-					const image = {
-						id: item.id,
-						order: item.order,
-						title: item.title,
-						src: item.image.responsiveImage.src,
-						size: item.size,
-						sold: item.sold,
-						description: item.description,
-					}
-					sortedImages.push(image)
-				})
-
-				sortedImages.sort((a, b) => {
-					return a.order - b.order
-				})
-
-				this.images = sortedImages
-			}
+	created() {
+		const { setGalleryImages } = useMainStore()
+		setGalleryImages()
 	},
 
 	methods: {
@@ -83,6 +43,8 @@ export default {
 	},
 
 	computed: {
+		...mapState(useMainStore, ["images"]),
+
 		cols() {
 			if (this.$vuetify.display.smAndDown) {
 				return 6
