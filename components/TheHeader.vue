@@ -36,13 +36,13 @@
 			scroll-behavior="elevate" 
 			fixed 
 			width="100%"
-			:class="$vuetify.display.smAndDown ? 'pl-5 pr-2 ' : 'px-15'"
 		>
+		
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
 						<v-img
+							:class="$vuetify.display.smAndDown ? 'ml-5' : 'ml-15'"
 							v-bind="props"
-							class="" 
 							:srcset="srcSet" 
 							:src="logo" 
 							max-height="100" 
@@ -53,7 +53,7 @@
 						</v-img>
 				</template>
 			</v-hover>		
-
+			
 			<v-spacer></v-spacer>
 
 			<ClientOnly fallback-tag="span">
@@ -73,7 +73,13 @@
 			</ClientOnly>
 
 			<ClientOnly fallback-tag="span">
-				<v-btn v-if="$vuetify.display.smAndUp" variant="text" tile @click="$router.push('/contact')">
+				<v-btn 
+					v-if="$vuetify.display.smAndUp" 
+					variant="text" 
+					tile 
+					@click="$router.push('/contact')"
+					:class="$vuetify.display.smAndDown ? 'mr-5' : 'mr-15'"
+				>
 					Contact
 				</v-btn>	
 			</ClientOnly>
@@ -82,7 +88,7 @@
 				<v-app-bar-nav-icon 
 					v-if="$vuetify.display.xs"  
 					@click.stop="drawer = !drawer"
-					class="mx-0"
+					class="mx-0 mr-2"
 				></v-app-bar-nav-icon>
 			</ClientOnly>
 
@@ -94,6 +100,13 @@
 
 export default {
 	name: "TheHeader",
+
+	props: {
+		customClass: {
+			type: String,
+			default: "",
+		}
+	},
 
 	data:() => ({
 		drawer: false,

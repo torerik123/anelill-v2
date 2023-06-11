@@ -1,12 +1,12 @@
 <template>
 	
 		<v-sheet id="gallery" height="auto" class="">
-			<v-row dense no-gutters class="justify-space-between">
+			<v-row dense no-gutters class="justify-space-around">
 				<ClientOnly>
 					<v-col
 						v-for="image in images"
 						:key="image.id"
-						cols="auto"
+						:cols="cols"
 					>
 						<ImageSingle 
 							:image="image"
@@ -80,6 +80,18 @@ export default {
 		handleOpen(index) {
 			// TODO => navigateTo
 			this.$router.push("/gallery/" + index)
+		},
+	},
+
+	computed: {
+		cols() {
+			if (this.$vuetify.display.smAndDown) {
+				return 6
+			} else if (this.$vuetify.display.md) {
+				return 4
+			} else {
+				return "auto"
+			}
 		},
 	},
 
