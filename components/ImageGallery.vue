@@ -77,9 +77,8 @@ export default {
 	},
 
 	methods: {
-		handleOpen(index) {
-			// TODO => navigateTo
-			this.$router.push("/gallery/" + index)
+		async handleOpen(id) {
+			await navigateTo("/gallery/" + id)
 		},
 	},
 

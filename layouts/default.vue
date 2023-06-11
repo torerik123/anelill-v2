@@ -6,7 +6,7 @@
 				<slot></slot>
 			</v-container>
 		</v-main>
-		<TheFooter class="app" :customClass="$vuetify.display.smAndDown ? 'px-5' : 'px-15'"></TheFooter>
+		<TheFooter class="app"></TheFooter>
 	</v-app>
 </template>
 

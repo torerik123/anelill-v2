@@ -39,14 +39,10 @@
 	</v-card>
 </template>
 
-
 <script>
-import { mapState } from 'pinia'
-import { useMainStore } from '~~/stores/main'
-
 export default {
 	name: "ImageSingle",
-	emits: ["open"],
+	emits: ["viewImg"],
 
 	props: {
 		image: {
@@ -59,15 +55,9 @@ export default {
 		scrollDown: null,
 	}),
 
-	// computed: {
-	// 	...mapState(useMainStore, ['images']),
-	// },
-
 	methods: {
 		viewImg() {
-			throw new Error("--TODO => viewImg")
-			const index = this.images.indexOf(this.image)
-			this.$emit("viewImg", index)
+			this.$emit("viewImg", this.image.id)
 		},
 	}
 }

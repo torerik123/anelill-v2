@@ -1,5 +1,5 @@
 <template>
-	<v-footer color="white" absolute app :class="customClass">
+	<v-footer color="white" absolute app :class="$vuetify.display.smAndDown ? 'px-5' : 'px-15'">
 		<v-row dense no-gutters>
 			<v-col cols="auto" align-self=center>
 				<span>&copy; {{ new Date().getFullYear() }} | Ane Lill</span> 
@@ -19,12 +19,5 @@
 <script>
 export default {
 	name: "TheFooter",
-
-	props: {
-		customClass: {
-			type: String,
-			default: "",
-		}
-	},
 }
 </script>
