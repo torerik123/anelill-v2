@@ -46,12 +46,11 @@ export default {
 		...mapState(useMainStore, ["images"]),
 
 		cols() {
-			if (this.$vuetify.display.smAndDown) {
-				return 6
-			} else if (this.$vuetify.display.md) {
-				return 4
-			} else {
-				return "auto"
+			switch(true) {
+				case this.$vuetify.display.xs: return 12
+				case this.$vuetify.display.sm: return 6
+				case this.$vuetify.display.md: return 4
+				default: return 3
 			}
 		},
 	},
