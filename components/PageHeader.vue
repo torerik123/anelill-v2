@@ -4,9 +4,19 @@
 		class="overflow-hidden"
 	>
 		<v-img 
+			v-if="headerImg.length"
 			:src="headerImg"
+			:srcSet="srcSet"
 			cover
 		>
+			<template #placeholder>
+				<div class="d-flex align-center justify-center fill-height">
+					<v-progress-circular
+						color="grey-lighten-4"
+						indeterminate
+					></v-progress-circular>
+				</div>
+			</template>
 		</v-img>
 	</v-sheet>
 </template>
@@ -17,6 +27,11 @@ export default {
 
 	props: {
 		headerImg: {
+			type: String,
+			default: "",
+		},
+		
+		srcSet: {
 			type: String,
 			default: "",
 		},

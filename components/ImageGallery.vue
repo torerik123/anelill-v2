@@ -8,11 +8,16 @@
 						:key="image.id"
 						:cols="cols"
 					>
-						<ImageSingle 
-							:image="image"
-							@open="handleOpen"
-							@viewImg="handleOpen" 
-						></ImageSingle>
+						<v-lazy 
+							:options="{'threshold':0.5}"
+							transition="fade-transition"
+						>
+							<ImageSingle 
+								:image="image"
+								@open="handleOpen"
+								@viewImg="handleOpen" 
+							></ImageSingle>
+						</v-lazy>
 					</v-col>
 				</ClientOnly>
 				
@@ -30,11 +35,6 @@ export default {
 		dialog: false,
 		index: 0,
 	}),
-
-	created() {
-		const { setGalleryImages } = useMainStore()
-		setGalleryImages()
-	},
 
 	methods: {
 		async handleOpen(id) {

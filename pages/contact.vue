@@ -1,38 +1,25 @@
 <template>
 	<div>
 		<ClientOnly>
-			<PageHeader v-if="headerImg.length" :headerImg="headerImg"></PageHeader>
+			<PageHeader 
+				v-if="headerImages.contact.src.length" 
+				:headerImg="headerImages.contact.src" 
+				:srcSet="headerImages.contact.srcSet"
+			>
+			</PageHeader>
 		</ClientOnly>
 		<ContactForm></ContactForm>
 	</div>
 </template>
 
 <script>
+import { mapState } from "pinia"
+
 export default {
 	name: "contact",
 
-	data:() => ({
-		headerImg: "",
-	}),
-
-	async created() {
-		const query = `
-			query headerImg {
-				contact {
-					headerImage {
-						responsiveImage(imgixParams: {auto: format}) {
-						src
-						}
-					}
-				}
-			}
-		`
-
-		const { data: response } = useGraphqlQuery({ query })
-
-		if (response.value) {
-			this.headerImg = response.value.contact.headerImage.responsiveImage.src
-		}
+	computed: {
+		...mapState(useMainStore, ["headerImages"]),
 	},
 }
 </script>

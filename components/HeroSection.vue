@@ -11,14 +11,15 @@
 				width="100%"
 				min-height="40vh"
 				max-height="60vh"
-				:src="image"
+				:src="headerImages.home.src"
+				:srcSet="headerImages.home.srcSet"
 				transition="slide-y-transition"
 				cover
 			>
 				<template #placeholder>
 					<div class="d-flex align-center justify-center fill-height fill-width">
 						<v-progress-circular
-							v-if="!image.length"
+							v-if="!headerImages.home.src.length"
 							color="grey-lighten-4"
 							indeterminate
 						></v-progress-circular>
@@ -30,43 +31,16 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
 export default {
 	name: "HeroSection",
 
 	data:() => ({
 		isActive: false,
-		show: false,
-		image: "",
 	}),
 
-	async created() {
-		const query = `
-			query getHeaderImg {
-					home {
-						logo {
-							responsiveImage(imgixParams: {auto: enhance}) {
-								src
-							}
-						}
-						tagline
-						bannerImage {
-						responsiveImage(imgixParams: {auto: format}) {
-								src
-							}
-						}
-					}
-				}`
-
-		const { data:response } = await useGraphqlQuery({ query });
-
-		if (response.value) {
-			this.image = response.value.home.bannerImage.responsiveImage.src
-		}
-	},
-
-
-	mounted() {
-		this.show = true
+	computed: {
+		...mapState(useMainStore, ["headerImages"])
 	},
 }
 </script>

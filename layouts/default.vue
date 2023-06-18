@@ -13,7 +13,14 @@
 <script>
 export default {
 	name: 'DefaultLayout',
+	
+	created() {
+		const { setAllImages } = useMainStore()
+		setAllImages()
+	},
 }
+
+
 </script>
 
 <style>
