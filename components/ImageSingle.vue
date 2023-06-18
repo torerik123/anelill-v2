@@ -11,8 +11,6 @@
 		>
 			<v-hover>
 				<template v-slot:default="{ isHovering, props }">
-					<!-- TODO v-lazy -->
-					<!-- TODO Nuxt image -->
 					<v-img
 						v-bind="props"
 						:style="isHovering ? 'cursor: pointer;' : ''" 
@@ -23,6 +21,9 @@
 						height="auto"
 						contain
 					>
+					<template #sources>
+						<source :srcset="image.srcSet">
+					</template>
 					</v-img>
 				</template>
 			</v-hover>

@@ -30,12 +30,14 @@ export const useMainStore = defineStore('main', {
 							logo {
 								responsiveImage(imgixParams: {auto: enhance}) {
 									src
+									webpSrcSet
 								}
 							}
 							tagline
 							bannerImage {
 							responsiveImage(imgixParams: {auto: format}) {
 									src
+									webpSrcSet
 								}
 							}
 						}
@@ -45,7 +47,7 @@ export const useMainStore = defineStore('main', {
 
 			if (response.value) {
 				this.headerImages.home.src = response.value.home.bannerImage.responsiveImage.src
-				this.headerImages.home.srcSet = response.value.home.bannerImage.responsiveImage.src
+				this.headerImages.home.srcSet = response.value.home.bannerImage.responsiveImage.webpSrcSet
 			}
 		},
 
@@ -56,7 +58,8 @@ export const useMainStore = defineStore('main', {
 							headerImage {
 							responsiveImage(imgixParams: {auto: format}) {
 								src
-							}
+								webpSrcSet
+								}
 							}
 						}
 						allImages {
@@ -70,6 +73,7 @@ export const useMainStore = defineStore('main', {
 								id
 								responsiveImage(imgixParams: {auto: format}) {
 									src
+									webpSrcSet
 								}
 							}	
 						}
@@ -79,7 +83,7 @@ export const useMainStore = defineStore('main', {
 	
 				if (response.value) {
 					this.headerImages.gallery.src = response.value.gallery.headerImage.responsiveImage.src
-					this.headerImages.gallery.srcSet = response.value.gallery.headerImage.responsiveImage.srcSet
+					this.headerImages.gallery.srcSet = response.value.gallery.headerImage.responsiveImage.webpSrcSet
 					this.images = useSortImages(response.value.allImages)
 				}
 		},
@@ -91,6 +95,7 @@ export const useMainStore = defineStore('main', {
 						headerImage {
 							responsiveImage(imgixParams: {auto: format}) {
 							src
+							webpSrcSet
 							}
 						}
 						text
@@ -100,7 +105,8 @@ export const useMainStore = defineStore('main', {
 			const { data: response } = await useGraphqlQuery({ query })
 
 			if (response.value) {
-				this.headerImages.about = response.value.about.headerImage.responsiveImage.src
+				this.headerImages.about.src = response.value.about.headerImage.responsiveImage.src
+				this.headerImages.about.srcSet = response.value.about.headerImage.responsiveImage.webpSrcSet
 				this.aboutText = response.value.about.text
 			}
 		},
@@ -112,7 +118,7 @@ export const useMainStore = defineStore('main', {
 						headerImage {
 							responsiveImage(imgixParams: {auto: format}) {
 							src
-							srcSet
+							webpSrcSet
 							}
 						}
 					}
@@ -123,7 +129,7 @@ export const useMainStore = defineStore('main', {
 
 			if (response.value) {
 				this.headerImages.contact.src = response.value.contact.headerImage.responsiveImage.src
-				this.headerImages.contact.srcSet = response.value.contact.headerImage.responsiveImage.srcSet
+				this.headerImages.contact.srcSet = response.value.contact.headerImage.responsiveImage.webpSrcSet
 			}
 		},
 	},

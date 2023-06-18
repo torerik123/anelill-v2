@@ -1,6 +1,6 @@
 <template>
 	<v-list>
-		<v-list-item>Populate store with images? page by page basis</v-list-item>
+		<v-list-item>Image carousel => set same height so next/prev btn always in same place</v-list-item>
 		<v-list-item>Image sizes</v-list-item>
 		<v-list-item>Font type</v-list-item>
 		<v-list-item>Nuxt image</v-list-item>
@@ -20,6 +20,7 @@
 		
 		<v-list-item>Redirect /admin to datocms</v-list-item>
 		<v-list-item>Loading spinners -> lazy loading osv</v-list-item>
+		<v-list-item>Middleware</v-list-item>
 		<v-list-item>Check everything response</v-list-item>
 		<v-list-item> 
 				--> improve lighthouse score

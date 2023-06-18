@@ -12,10 +12,12 @@
 				min-height="40vh"
 				max-height="60vh"
 				:src="headerImages.home.src"
-				:srcSet="headerImages.home.srcSet"
 				transition="slide-y-transition"
 				cover
 			>
+				<template #sources>
+					<source :srcset="headerImages.home.srcSet">
+				</template>
 				<template #placeholder>
 					<div class="d-flex align-center justify-center fill-height fill-width">
 						<v-progress-circular

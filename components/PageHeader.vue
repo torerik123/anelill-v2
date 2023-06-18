@@ -7,9 +7,12 @@
 		<v-img 
 			v-if="headerImg.length"
 			:src="headerImg"
-			:srcSet="srcSet"
 			cover
 		>
+			<template #sources>
+				<source :srcset="srcSet">
+			</template>
+
 			<template #placeholder>
 				<div class="d-flex align-center justify-center fill-height">
 					<v-progress-circular
