@@ -2,7 +2,7 @@ import { useGraphqlQuery } from '~~/composables/useGraphqlQuery.js'
 
 export const useMainStore = defineStore('main', {
 	state: () => ({
-		logo: "",
+		logo: { src: "", srcSet: ""},
 		images: [],
 		headerImages: {
 			home: { src: "", srcSet: ""},
@@ -17,10 +17,31 @@ export const useMainStore = defineStore('main', {
 	actions: {
 		async setAllImages() {
 			// Set all images and text used for each page
+			this.setHeaderContent()
 			this.setMainPageContent()
 			this.setGalleryContent()
 			this.setAboutContent()
 			this.setContactContent()			
+		},
+
+		async setHeaderContent() {
+			const query = `query logo {
+				home {
+					logo {
+						responsiveImage(imgixParams: {auto: format}) {
+							src
+							webpSrcSet
+						}
+					}
+				}
+			}`
+	
+			const { data: response } = await useGraphqlQuery({ query })
+	
+			if (response.value) {
+				this.logo.src = response.value.home.logo.responsiveImage.src
+				this.logo.srcSet =  response.value.home.logo.responsiveImage.webpSrcSet
+			}
 		},
 
 		async setMainPageContent() {
@@ -28,7 +49,7 @@ export const useMainStore = defineStore('main', {
 				query getHeaderImg {
 						home {
 							logo {
-								responsiveImage(imgixParams: {auto: enhance}) {
+								responsiveImage(imgixParams: {auto: format}) {
 									src
 									webpSrcSet
 								}
@@ -48,6 +69,7 @@ export const useMainStore = defineStore('main', {
 			if (response.value) {
 				this.headerImages.home.src = response.value.home.bannerImage.responsiveImage.src
 				this.headerImages.home.srcSet = response.value.home.bannerImage.responsiveImage.webpSrcSet
+				console.log(response.value.home.bannerImage.responsiveImage.webpSrcSet)
 			}
 		},
 

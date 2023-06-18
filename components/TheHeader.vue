@@ -5,8 +5,18 @@
 				<v-list-item>
 					<v-list-item-title>
 						<v-hover v-slot="{ hover }">
-							<v-img :style="hover ? 'cursor: pointer;' : ''" @click="$router.push('/')" class="mx-auto"
-								:src="logo" max-height="100" max-width="100" contain>
+							<v-img 
+								:style="hover ? 'cursor: pointer;' : ''" 
+								@click="$router.push('/')" 
+								class="mx-auto"
+								:src="logo.src" 
+								max-height="100" 
+								max-width="100" 
+								contain
+							>
+								<template #sources>
+									<source :srcset="logo.srcSet">
+								</template>
 							</v-img>
 						</v-hover>
 					</v-list-item-title>
@@ -39,18 +49,21 @@
 		>
 		
 			<v-hover>
-				<template v-slot:default="{ isHovering, props }">
-						<v-img
-							:class="$vuetify.display.smAndDown ? 'ml-5' : 'ml-15'"
-							v-bind="props"
-							:srcset="srcSet" 
-							:src="logo" 
-							max-height="100" 
-							max-width="100" 
-							contain
-							:style="isHovering ? 'cursor: pointer;' : ''" 
-							@click="$router.push('/')">
-						</v-img>
+				<template #default="{ isHovering, props }">
+					<v-img
+						:class="$vuetify.display.smAndDown ? 'ml-5' : 'ml-15'"
+						v-bind="props"
+						:src="logo.src" 
+						max-height="100" 
+						max-width="100" 
+						contain
+						:style="isHovering ? 'cursor: pointer;' : ''" 
+						@click="$router.push('/')"
+					>
+						<template #sources>
+							<source :srcset="logo.srcSet">
+						</template>
+					</v-img>
 				</template>
 			</v-hover>		
 			
@@ -97,6 +110,7 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
 
 export default {
 	name: "TheHeader",
@@ -110,31 +124,11 @@ export default {
 
 	data:() => ({
 		drawer: false,
-		logo: "",
-		srcSet: "",
 	}),
 
-	async created() {
-		const query = `query logo {
-			home {
-				logo {
-					responsiveImage(imgixParams: {auto: enhance}) {
-						src
-						srcSet
-					}
-				}
-			}
-		}`
-
-		const { data: response } = await useGraphqlQuery({ query })
-
-		if (response.value) {
-			this.logo = response.value.home.logo.responsiveImage.src
-			this.srcSet =  response.value.home.logo.responsiveImage.srcSet
-		}
-	},
-
 	computed: {
+		...mapState(useMainStore, ["logo"]),
+
 		isHomePage() {
 			const route = useRoute();
 			return route.path === "/"

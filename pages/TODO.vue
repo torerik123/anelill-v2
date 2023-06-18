@@ -2,6 +2,7 @@
 	<v-list>
 		<v-list-item>Image carousel => set same height so next/prev btn always in same place</v-list-item>
 		<v-list-item>Image sizes</v-list-item>
+		<v-list-item>Images alt text</v-list-item>
 		<v-list-item>Font type</v-list-item>
 		<v-list-item>Nuxt image</v-list-item>
 		<v-list-item>Placeholder images/color block</v-list-item>
