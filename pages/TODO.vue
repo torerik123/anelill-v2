@@ -1,7 +1,9 @@
 <template>
 	<v-list>
+		<v-list-item>Image sizes => DatoCMS not setting srcSet? </v-list-item>
 		<v-list-item>Image carousel => set same height so next/prev btn always in same place</v-list-item>
-		<v-list-item>Image sizes</v-list-item>
+		<v-list-item>Get favicon from DatoCMS</v-list-item>
+		<v-list-item>Enable vuetify treeshaking</v-list-item>
 		<v-list-item>Images alt text</v-list-item>
 		<v-list-item>Font type</v-list-item>
 		<v-list-item>Nuxt image</v-list-item>

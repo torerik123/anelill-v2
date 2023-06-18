@@ -9,7 +9,8 @@
 								:style="hover ? 'cursor: pointer;' : ''" 
 								@click="$router.push('/')" 
 								class="mx-auto"
-								:src="logo.src" 
+								:src="logo.src"
+								:sizes="logo.sizes" 
 								max-height="100" 
 								max-width="100" 
 								contain
@@ -54,6 +55,7 @@
 						:class="$vuetify.display.smAndDown ? 'ml-5' : 'ml-15'"
 						v-bind="props"
 						:src="logo.src" 
+						:sizes="logo.sizes" 
 						max-height="100" 
 						max-width="100" 
 						contain

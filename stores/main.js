@@ -2,13 +2,13 @@ import { useGraphqlQuery } from '~~/composables/useGraphqlQuery.js'
 
 export const useMainStore = defineStore('main', {
 	state: () => ({
-		logo: { src: "", srcSet: ""},
+		logo: { src: "", sizes: "", srcSet: ""},
 		images: [],
 		headerImages: {
-			home: { src: "", srcSet: ""},
-			about: { src: "", srcSet: ""},
-			gallery: { src: "", srcSet: ""},
-			contact: { src: "", srcSet: ""},
+			home: { src: "", sizes: "", srcSet: ""},
+			about: { src: "", sizes: "", srcSet: ""},
+			gallery: { src: "", sizes: "", srcSet: ""},
+			contact: { src: "", sizes: "", srcSet: ""},
 		},
 		introText: "",
 		aboutText: "",
@@ -30,6 +30,7 @@ export const useMainStore = defineStore('main', {
 					logo {
 						responsiveImage(imgixParams: {auto: format}) {
 							src
+							sizes
 							webpSrcSet
 						}
 					}
@@ -40,6 +41,7 @@ export const useMainStore = defineStore('main', {
 	
 			if (response.value) {
 				this.logo.src = response.value.home.logo.responsiveImage.src
+				this.logo.sizes =  response.value.home.logo.responsiveImage.sizes
 				this.logo.srcSet =  response.value.home.logo.responsiveImage.webpSrcSet
 			}
 		},
@@ -51,13 +53,15 @@ export const useMainStore = defineStore('main', {
 							logo {
 								responsiveImage(imgixParams: {auto: format}) {
 									src
+									sizes
 									webpSrcSet
 								}
 							}
 							tagline
 							bannerImage {
-							responsiveImage(imgixParams: {auto: format}) {
+							responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000 }) {
 									src
+									sizes
 									webpSrcSet
 								}
 							}
@@ -68,8 +72,8 @@ export const useMainStore = defineStore('main', {
 
 			if (response.value) {
 				this.headerImages.home.src = response.value.home.bannerImage.responsiveImage.src
+				this.headerImages.home.sizes = response.value.home.bannerImage.responsiveImage.sizes
 				this.headerImages.home.srcSet = response.value.home.bannerImage.responsiveImage.webpSrcSet
-				console.log(response.value.home.bannerImage.responsiveImage.webpSrcSet)
 			}
 		},
 
@@ -78,8 +82,9 @@ export const useMainStore = defineStore('main', {
 					query galleryImages {
 						gallery {
 							headerImage {
-							responsiveImage(imgixParams: {auto: format}) {
+							responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000}) {
 								src
+								sizes
 								webpSrcSet
 								}
 							}
@@ -93,8 +98,9 @@ export const useMainStore = defineStore('main', {
 							order
 							image {
 								id
-								responsiveImage(imgixParams: {auto: format}) {
+								responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000}) {
 									src
+									sizes
 									webpSrcSet
 								}
 							}	
@@ -105,6 +111,7 @@ export const useMainStore = defineStore('main', {
 	
 				if (response.value) {
 					this.headerImages.gallery.src = response.value.gallery.headerImage.responsiveImage.src
+					this.headerImages.gallery.sizes = response.value.gallery.headerImage.responsiveImage.sizes
 					this.headerImages.gallery.srcSet = response.value.gallery.headerImage.responsiveImage.webpSrcSet
 					this.images = useSortImages(response.value.allImages)
 				}

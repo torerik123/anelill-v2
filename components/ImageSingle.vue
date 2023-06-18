@@ -16,7 +16,8 @@
 						:style="isHovering ? 'cursor: pointer;' : ''" 
 						@click="viewImg"
 						class=""
-						:src="image.src"	
+						:src="image.src"
+						:sizes="image.sizes"	
 						max-width="300"
 						height="auto"
 						contain
