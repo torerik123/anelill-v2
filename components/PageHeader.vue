@@ -1,6 +1,7 @@
 <template>
 	<v-sheet
-		:height="$vuetify.display.smAndUp ? '40vh' : '30vh'"
+		height="auto"
+		:max-height="$vuetify.display.smAndUp ? '40vh' : '30vh'"
 		class="overflow-hidden"
 	>
 		<v-img 

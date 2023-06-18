@@ -2,7 +2,8 @@
 	<div>
 		<v-row dense no-gutters>
 			<v-col cols="12">
-				<v-carousel height="auto" v-model="selectedImg" hide-delimiters>
+				<ClientOnly>
+					<v-carousel height="auto" v-model="selectIndex" hide-delimiters>
 						<v-carousel-item
 							v-for="image in images"
 							:key="image.id"
@@ -12,23 +13,46 @@
 							contain
 						>
 						</v-carousel-item>
-			</v-carousel>
+
+						<template #prev>
+							<v-btn icon="mdi-chevron-left" @click="navigate('prev')"></v-btn>
+						</template>
+						<template #next>
+							<v-btn icon="mdi-chevron-right" @click="navigate('next')"></v-btn>
+						</template>
+					</v-carousel>
+				</ClientOnly>
 			</v-col>
 		</v-row>
 
 		<v-row>
 			<v-col cols="12">
-				<v-card elevation="0">
-					<v-card-title class="text-center">{{ images[selectedImg].title }}</v-card-title>
-					<v-card-subtitle class="text-center">{{ images[selectedImg].size }}</v-card-subtitle>
-					<v-card-text class="text-center">
-						{{ images[selectedImg].description }}
-					</v-card-text>
-					<v-card-text class="text-center">
-						To inquire about available paintings, 
-						please <nuxt-link to="/contact">contact me</nuxt-link>.
-					</v-card-text>
-				</v-card>
+				<ClientOnly>
+					<v-card elevation="0" v-if="selectedImg">
+						<v-card-title 
+							v-if="selectedImg.title" 
+							class="text-center"
+						>
+							{{ selectedImg.title }}
+						</v-card-title>
+						<v-card-subtitle 
+						v-if="selectedImg.size"
+							class="text-center"
+						>
+							{{ selectedImg.size }}
+						</v-card-subtitle>
+						<v-card-text 
+							v-if="selectedImg.description"
+							class="text-center"
+						>
+							{{ selectedImg.description }}
+						</v-card-text>
+						<v-card-text class="text-center">
+							To inquire about available paintings, 
+							please <nuxt-link to="/contact">contact me</nuxt-link>.
+						</v-card-text>
+					</v-card>
+				</ClientOnly>
 			</v-col>
 		</v-row>
 
@@ -57,21 +81,40 @@ export default {
 
 	data:() => ({
 		selectedImg: false,
+		selectIndex: 0
 	}),
 
-	async created() {
-		const { setGalleryImages } = useMainStore()
-		setGalleryImages()
-	},
-
 	mounted() {
-		const selected = this.images.filter(image => image.id === this.$route.params.id)
-		this.selectedImg = selected.length ? selected.order : 0
-		console.log(selected)
+		// Get selected image and id
+		const selected = this.images.filter((image, index) => {
+			if (image.id === this.$route.params.id) {
+				this.selectIndex = index
+				return image
+			}
+			return false
+		})
+
+		this.selectedImg = selected[0]
 	},
 
 	computed: {
 		...mapState(useMainStore, ["images"]),
+	},
+
+	methods: {
+		navigate(direction) {
+			let nextImageId = this.images[0].id
+
+			if (direction == "next") {
+				nextImageId = this.images[this.selectIndex + 1] ? this.images[this.selectIndex + 1].id : nextImageId
+			}
+			
+			if (direction == "prev") {
+				nextImageId = this.images[this.selectIndex - 1] ? nextImageId = this.images[this.selectIndex - 1].id : this.images.at(-1).id   
+			}
+
+			this.$router.replace({ path: `/gallery/${nextImageId}` })
+		},
 	},
 }
 </script>
