@@ -8,14 +8,14 @@
 		"postinstall": "nuxt prepare"
 	},
 	"devDependencies": {
-		"nuxt": "3.2.0"
+		"nuxt": "3.6.5"
 	},
 	"dependencies": {
-		"@mdi/font": "^7.1.96",
-		"@pinia/nuxt": "^0.4.6",
-		"pinia": "^2.0.30",
-		"sass": "^1.58.0",
-		"vuetify": "^3.3.3"
+		"@mdi/font": "^7.2.96",
+		"@pinia/nuxt": "^0.4.11",
+		"pinia": "^2.1.6",
+		"sass": "^1.65.1",
+		"vuetify": "^3.3.12"
 	},
 	"overrides": {
 		"vue": "latest"
