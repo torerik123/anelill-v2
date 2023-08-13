@@ -15,12 +15,8 @@
 <script>
 import { mapState } from 'pinia';
 export default {
-	name: "Gallery",
-
-	data:() => ({
-		headerImg: false,
-	}),
-
+	name: "GalleryPage",
+	
 	computed: {
 		...mapState(useMainStore, ["headerImages"])
 	},
