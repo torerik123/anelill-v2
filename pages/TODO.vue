@@ -17,7 +17,7 @@
 		<v-list-item>Middleware</v-list-item>
 		<v-list-item>Check everything responsive</v-list-item>
 		<v-list-item> 
-				--> improve lighthouse score
+			--> improve lighthouse score
 		</v-list-item>
 	</v-list>
 </template>
