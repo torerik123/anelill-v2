@@ -19,12 +19,4 @@ export default {
 		setAllImages()
 	},
 }
-
-
 </script>
-
-<style>
-.app {
-	font-family: "Sono", sans-serif !important;
-}
-</style>
