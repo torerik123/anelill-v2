@@ -1,20 +1,14 @@
 <template>
 	<v-list>
 		<v-list-item>Font type</v-list-item>
-		<v-list-item>Enable vuetify treeshaking</v-list-item>
+		<v-list-item>SEO</v-list-item>
 		<v-list-item>Custom 404</v-list-item>
 		<v-list-item>Image sizes => DatoCMS not setting srcSet? </v-list-item>
 		<v-list-item>Image carousel => set same height so next/prev btn always in same place</v-list-item>
-		<v-list-item>Get favicon from DatoCMS</v-list-item>
 		<v-list-item>Images alt text</v-list-item>
-		<v-list-item>Nuxt image</v-list-item>
 		<v-list-item>Placeholder images/color block</v-list-item>
 		<v-list-item>Use optimized images -> webp from datoCMS => datoCMS img component</v-list-item>
-		<v-list-item>Lazy load images --> get sizes, srcet</v-list-item>
 		
-		<v-list-item>Redirect /admin to datocms</v-list-item>
-		<v-list-item>Loading spinners -> lazy loading osv</v-list-item>
-		<v-list-item>Middleware</v-list-item>
 		<v-list-item>Check everything responsive</v-list-item>
 		<v-list-item> 
 			--> improve lighthouse score

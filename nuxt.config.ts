@@ -4,6 +4,7 @@ export default defineNuxtConfig({
 	css: [
 		"vuetify/lib/styles/main.sass",
 		"@mdi/font/css/materialdesignicons.min.css",
+		"@/main.scss"
 	],
 	build: {
 		transpile: ["vuetify"],
@@ -13,6 +14,14 @@ export default defineNuxtConfig({
 		define: {
 			"process.env.DEBUG": false,
 		},
+		plugins: [
+			vuetify({
+				autoImport: true,
+				styles: {
+					configFile: "./settings.scss",
+				},
+			}),
+		],
 	},
 
 	modules: [
@@ -27,6 +36,16 @@ export default defineNuxtConfig({
 				config.plugins.push(vuetify())
 			);
 		},
+		[
+			"@nuxtjs/google-fonts",
+			{
+				families: {
+					"Sono": [400],
+					download: true,
+					inject: true,
+				},
+			},
+		],
 	],
 
 	imports: {
