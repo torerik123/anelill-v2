@@ -48,14 +48,18 @@ export default defineNuxtConfig({
 		],
 	],
 
-	imports: {
-		// autimports useStore()
-		dirs: ["./stores/*"],
+	datocms: {
+		datocmsReadOnlyToken: process.env.DATO_CMS_TOKEN,
 	},
 
 	runtimeConfig: {
 		public: {
 			datoCmsToken: process.env.DATO_CMS_TOKEN,
 		},
+	},
+
+	imports: {
+		// autimports useStore()
+		dirs: ["./stores/*"],
 	},
 });
