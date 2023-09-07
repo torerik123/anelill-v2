@@ -1,6 +1,11 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+	// Workaround for google font download on build 
+	experimental: {
+		inlineSSRStyles: id => !id?.includes('entry')
+	},
+
 	css: [
 		"vuetify/lib/styles/main.sass",
 		"@mdi/font/css/materialdesignicons.min.css",
