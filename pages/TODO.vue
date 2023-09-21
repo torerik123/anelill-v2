@@ -1,6 +1,6 @@
 <template>
 	<v-list>
-		<v-list-item>Mark item as sold in gallery page</v-list-item>
+		<v-list-item>Mark item as sold in gallery page + single view</v-list-item>
 		<v-list-item>Improve lighthouse score</v-list-item>
 		<v-list-item>SEO + accessibility</v-list-item>
 		<v-list-item>Get global SEO settings from datoCMS</v-list-item>

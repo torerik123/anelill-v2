@@ -1,15 +1,23 @@
-import vuetify from 'vite-plugin-vuetify'
+import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-	// Workaround for google font download on build 
+	devtools: {
+		enabled: true,
+
+		timeline: {
+			enabled: true,
+		},
+	},
+
+	// Workaround for google font download on build
 	experimental: {
-		inlineSSRStyles: id => !id?.includes('entry')
+		inlineSSRStyles: (id) => !id?.includes("entry"),
 	},
 
 	css: [
 		"vuetify/lib/styles/main.sass",
 		"@mdi/font/css/materialdesignicons.min.css",
-		"@/main.scss"
+		"@/main.scss",
 	],
 	build: {
 		transpile: ["vuetify"],
@@ -45,7 +53,7 @@ export default defineNuxtConfig({
 			"@nuxtjs/google-fonts",
 			{
 				families: {
-					"Sono": [400],
+					Sono: [400],
 					download: true,
 					inject: true,
 				},
