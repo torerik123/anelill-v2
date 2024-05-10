@@ -1,4 +1,4 @@
-import vuetify from "vite-plugin-vuetify";
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
 	devtools: {
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 	css: [
 		"vuetify/lib/styles/main.sass",
 		"@mdi/font/css/materialdesignicons.min.css",
-		"@/main.scss",
+		"@/styles/main.scss",
 	],
 	build: {
 		transpile: ["vuetify"],
@@ -27,14 +27,11 @@ export default defineNuxtConfig({
 		define: {
 			"process.env.DEBUG": false,
 		},
-		plugins: [
-			vuetify({
-				autoImport: true,
-				styles: {
-					configFile: "./settings.scss",
-				},
-			}),
-		],
+		vue: {
+			template: {
+				transformAssetUrls,
+			},
+		},
 	},
 
 	modules: [

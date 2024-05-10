@@ -38,7 +38,7 @@ export const useMainStore = defineStore('main', {
 			}`
 	
 			const { data: response } = await useGraphqlQuery({ query })
-	
+			
 			if (response.value) {
 				this.logo.src = response.value.home.logo.responsiveImage.src
 				this.logo.sizes =  response.value.home.logo.responsiveImage.sizes

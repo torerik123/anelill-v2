@@ -1,5 +1,5 @@
 $font: "Sono", sans-serif;
 
-@forward 'vuetify/settings' with (
+@use 'vuetify' with (
 	$body-font-family: $font,
 );
