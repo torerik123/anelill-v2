@@ -15,7 +15,7 @@ export const useMainStore = defineStore('main', {
 	}),
 
 	actions: {
-		async setAllImages() {
+		setAllImages() {
 			// Set all images and text used for each page
 			this.setHeaderContent()
 			this.setMainPageContent()
