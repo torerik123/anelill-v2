@@ -8,6 +8,7 @@ export const useSortImages = (images) => {
             src: item.image.responsiveImage.src,
             sizes: item.image.responsiveImage.sizes,
 			srcSet: item.image.responsiveImage.srcSet,
+			alt: item.image.alt,
             size: item.size,
             sold: item.sold,
             description: item.description,

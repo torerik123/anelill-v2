@@ -7,12 +7,6 @@
 		transition="fade-transition"
 	>
 		<v-sheet class="pt-10 overflow-hidden" height="auto">
-			<!-- <nuxt-img 
-				:src="headerImages.home.src"
-				:sizes="headerImages.home.srcSet"
-				height="200" 
-				width="200" 
-			/> -->
 			<v-img
 				width="100%"
 				height="100%"
@@ -20,6 +14,7 @@
 				max-height="60vh"
 				:src="headerImages.home.src"
 				:sizes="headerImages.home.srcSet"
+				:alt="headerImages.home.alt"
 				transition="slide-y-transition"
 				cover
 			>

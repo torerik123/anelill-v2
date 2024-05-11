@@ -7,6 +7,7 @@
 		<v-img 
 			v-if="headerImg.length"
 			:src="headerImg"
+			:alt="alt"
 			cover
 		>
 			<template #sources>
@@ -38,6 +39,10 @@ export default {
 		srcSet: {
 			type: String,
 			default: "",
+		},
+		alt: {
+			type: String,
+			default: "page-header",
 		},
 	},
 }

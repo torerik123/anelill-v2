@@ -17,7 +17,8 @@
 						@click="viewImg"
 						class=""
 						:src="image.src"
-						:sizes="image.sizes"	
+						:sizes="image.sizes"
+						:alt="image?.alt"	
 						max-width="300"
 						height="auto"
 						contain

@@ -14,6 +14,7 @@
 								max-height="100" 
 								max-width="100" 
 								contain
+								:alt="logo.alt"
 							>
 								<template #sources>
 									<source :srcset="logo.srcSet">
@@ -61,6 +62,7 @@
 						contain
 						:style="isHovering ? 'cursor: pointer;' : ''" 
 						@click="$router.push('/')"
+						:alt="logo.alt"
 					>
 						<template #sources>
 							<source :srcset="logo.srcSet">

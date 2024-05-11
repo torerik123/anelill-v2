@@ -49,6 +49,7 @@
 							<v-lazy>
 								<v-img 
 									:src="headerImages.about"
+									alt="about-header"
 								>
 								</v-img>
 							</v-lazy>

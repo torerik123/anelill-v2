@@ -9,6 +9,7 @@
 							:key="image.id"
 							:lazy-src="image.src"
 							:src="image.src"
+							:alt="image?.alt"
 							max-height="70vh"
 							contain
 						>
