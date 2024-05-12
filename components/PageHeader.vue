@@ -5,13 +5,14 @@
 		class="overflow-hidden"
 	>
 		<v-img 
-			v-if="headerImg.length"
-			:src="headerImg"
-			:alt="alt"
+			v-if="headerImg.src.length"
+			:src="headerImg.src"
+			:alt="headerImg?.alt"
+			:lazy-src="headerImg?.base64"
 			cover
 		>
 			<template #sources>
-				<source :srcset="srcSet">
+				<source :srcset="headerImg?.srcSet">
 			</template>
 
 			<template #placeholder>
@@ -32,17 +33,8 @@ export default {
 
 	props: {
 		headerImg: {
-			type: String,
-			default: "",
-		},
-		
-		srcSet: {
-			type: String,
-			default: "",
-		},
-		alt: {
-			type: String,
-			default: "page-header",
+			type: Object,
+			default: () => ({}),
 		},
 	},
 }

@@ -3,7 +3,7 @@
 		v-model="isActive"
 		:options="{
 		threshold: .5
-		}"
+		}"	
 		transition="fade-transition"
 	>
 		<v-sheet class="pt-10 overflow-hidden" height="auto">
@@ -15,6 +15,7 @@
 				:src="headerImages.home.src"
 				:sizes="headerImages.home.srcSet"
 				:alt="headerImages.home.alt"
+				:lazy-src="headerImages.home.base64"
 				transition="slide-y-transition"
 				cover
 			>

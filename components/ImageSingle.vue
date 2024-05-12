@@ -18,7 +18,8 @@
 						class=""
 						:src="image.src"
 						:sizes="image.sizes"
-						:alt="image?.alt"	
+						:alt="image?.alt"
+						:lazy-src="image?.base64"	
 						max-width="300"
 						height="auto"
 						contain

@@ -3,8 +3,7 @@
 		<ClientOnly>
 			<PageHeader 
 				v-if="headerImages.contact.src.length" 
-				:headerImg="headerImages.contact.src" 
-				:srcSet="headerImages.contact.srcSet"
+				:headerImg="headerImages.contact" 
 			>
 			</PageHeader>
 		</ClientOnly>

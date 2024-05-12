@@ -5,10 +5,10 @@ export const useMainStore = defineStore('main', {
 		logo: { src: "", sizes: "", srcSet: "", alt: "site-logo"},
 		images: [],
 		headerImages: {
-			home: { src: "", sizes: "", srcSet: "", alt: "site-header-home"},
-			about: { src: "", sizes: "", srcSet: "", alt: "site-header-about"},
-			gallery: { src: "", sizes: "", srcSet: "", alt: "site-header-gallery" },
-			contact: { src: "", sizes: "", srcSet: "", alt: "site-header-contact" },
+			home: { src: "", sizes: "", srcSet: "", alt: "site-header-home", base64: ""},
+			about: { src: "", sizes: "", srcSet: "", alt: "site-header-about", base64: ""},
+			gallery: { src: "", sizes: "", srcSet: "", alt: "site-header-gallery", base64: "" },
+			contact: { src: "", sizes: "", srcSet: "", alt: "site-header-contact", base64: "" },
 		},
 		introText: "",
 		aboutText: "",
@@ -41,10 +41,12 @@ export const useMainStore = defineStore('main', {
 			const { data: response } = await useGraphqlQuery({ query })
 			
 			if (response.value) {
-				this.logo.src = response.value?.home?.logo?.responsiveImage?.src
-				this.logo.sizes =  response.value?.home?.logo?.responsiveImage?.sizes
-				this.logo.srcSet =  response.value?.home?.logo.responsiveImage?.webpSrcSet
-				this.logo.alt =  response.value?.home?.logo?.responsiveImage?.alt
+				this.logo = {
+					src: response.value?.home?.logo?.responsiveImage?.src,
+					sizes: response.value?.home?.logo?.responsiveImage?.sizes,
+					srcSet: response.value?.home?.logo.responsiveImage?.webpSrcSet,
+					alt: response.value?.home?.logo?.responsiveImage?.alt,
+				}
 			}
 		},
 
@@ -57,6 +59,7 @@ export const useMainStore = defineStore('main', {
 									src
 									sizes
 									webpSrcSet
+									base64
 								}
 							}
 							tagline
@@ -66,6 +69,7 @@ export const useMainStore = defineStore('main', {
 									src
 									sizes
 									webpSrcSet
+									base64
 								}
 							}
 						}
@@ -74,10 +78,13 @@ export const useMainStore = defineStore('main', {
 			const { data:response } = await useGraphqlQuery({ query });
 
 			if (response.value) {
-				this.headerImages.home.src = response.value?.home?.bannerImage?.responsiveImage?.src
-				this.headerImages.home.sizes = response.value?.home?.bannerImage?.responsiveImage?.sizes
-				this.headerImages.home.srcSet = response.value?.home?.bannerImage?.responsiveImage?.webpSrcSet
-				this.headerImages.home.alt = response.value?.home?.bannerImage?.responsiveImage?.alt
+				this.headerImages.home = {
+					src: response.value?.home?.bannerImage?.responsiveImage?.src,
+					sizes: response.value?.home?.bannerImage?.responsiveImage?.sizes,
+					srcSet: response.value?.home?.bannerImage?.responsiveImage?.webpSrcSet,
+					alt: response.value?.home?.bannerImage?.responsiveImage?.alt,
+					base64: response.value?.home?.bannerImage?.responsiveImage?.base64,
+				}
 			}
 		},
 
@@ -91,6 +98,7 @@ export const useMainStore = defineStore('main', {
 							src
 							sizes
 							webpSrcSet
+							base64
 							}
 						}
 					}
@@ -108,6 +116,7 @@ export const useMainStore = defineStore('main', {
 								src
 								sizes
 								webpSrcSet
+								base64
 							}
 						}	
 					}
@@ -116,10 +125,14 @@ export const useMainStore = defineStore('main', {
 				const { data: response } = await useGraphqlQuery({ query })
 	
 				if (response.value) {
-					this.headerImages.gallery.src = response.value.gallery.headerImage.responsiveImage.src
-					this.headerImages.gallery.sizes = response.value.gallery.headerImage.responsiveImage.sizes
-					this.headerImages.gallery.srcSet = response.value.gallery.headerImage.responsiveImage.webpSrcSet
-					this.headerImages.gallery.alt = response.value.gallery.headerImage.responsiveImage?.alt
+					this.headerImages.gallery = {
+						src: response.value.gallery.headerImage.responsiveImage.src,
+						sizes: response.value.gallery.headerImage.responsiveImage.sizes,
+						srcSet: response.value.gallery.headerImage.responsiveImage.webpSrcSet,
+						alt: response.value.gallery.headerImage.responsiveImage?.alt,
+						base64: response.value.gallery.headerImage.responsiveImage?.base64,
+					}
+					
 					this.images = useSortImages(response.value.allImages)
 				}
 		},
@@ -132,7 +145,8 @@ export const useMainStore = defineStore('main', {
 							responsiveImage(imgixParams: {auto: format}) {
 							alt
 							src
-							webpSrcSet
+							srcSet
+							base64
 							}
 						}
 						text
@@ -142,10 +156,14 @@ export const useMainStore = defineStore('main', {
 			const { data: response } = await useGraphqlQuery({ query })
 
 			if (response.value) {
-				this.headerImages.about.src = response.value.about.headerImage.responsiveImage.src
-				this.headerImages.about.srcSet = response.value.about.headerImage.responsiveImage.webpSrcSet
-				this.headerImages.about.alt = response.value.about.headerImage.responsiveImage.alt
-				this.aboutText = response.value.about.text
+				this.headerImages.about = {
+					src: response.value?.about?.headerImage?.responsiveImage?.src,
+					srcSet: response.value?.about?.headerImage?.responsiveImage?.srcSet,
+					alt: response.value?.about?.headerImage?.responsiveImage?.alt,
+					base64: response.value?.about?.headerImage?.responsiveImage?.base64,
+				}
+
+				this.aboutText = response.value?.about?.text
 			}
 		},
 
@@ -158,6 +176,7 @@ export const useMainStore = defineStore('main', {
 							alt	
 							src
 							webpSrcSet
+							base64
 							}
 						}
 					}
@@ -167,9 +186,12 @@ export const useMainStore = defineStore('main', {
 			const { data: response } = useGraphqlQuery({ query })
 
 			if (response.value) {
-				this.headerImages.contact.src = response.value?.contact?.headerImage?.responsiveImage?.src
-				this.headerImages.contact.srcSet = response.value?.contact?.headerImage?.responsiveImage?.webpSrcSet
-				this.headerImages.contact.alt = response.value?.contact?.headerImage?.responsiveImage?.alt
+				this.headerImages.contact = {
+					src: response.value?.contact?.headerImage?.responsiveImage?.src,
+					srcSet: response.value?.contact?.headerImage?.responsiveImage?.webpSrcSet,
+					alt: response.value?.contact?.headerImage?.responsiveImage?.alt,
+					base64: response.value?.contact?.headerImage?.responsiveImage?.base64,
+				}
 			}
 		},
 	},

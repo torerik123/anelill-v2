@@ -4,7 +4,8 @@
 			<div v-if="$vuetify.display.smAndDown">
 				<PageHeader 
 					v-if="headerImages.about.src.length" 
-					:headerImg="headerImages.about.src">
+					:headerImg="headerImages.about"
+				>
 				</PageHeader>
 
 				<SectionHeader text="About"></SectionHeader>
@@ -48,7 +49,7 @@
 						>
 							<v-lazy>
 								<v-img 
-									:src="headerImages.about"
+									:src="headerImages.about.src"
 									alt="about-header"
 								>
 								</v-img>
@@ -80,10 +81,6 @@ export default {
 
 	computed: {
 		...mapState(useMainStore, ["headerImages", "aboutText"]),
-
-		pageHeaderImg() {
-			return this.headerImages.about
-		},
 	},
 }
 </script>

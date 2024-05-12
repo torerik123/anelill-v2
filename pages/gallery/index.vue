@@ -3,8 +3,7 @@
 		<ClientOnly>
 			<PageHeader 
 				v-if="headerImages.gallery.src.length" 
-				:headerImg="headerImages.gallery.src"
-				:srcSet="headerImages.gallery.srcSet"
+				:headerImg="headerImages.gallery"
 			></PageHeader>
 		</ClientOnly>
 		<SectionHeader text="Gallery"></SectionHeader>

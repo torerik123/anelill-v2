@@ -5,6 +5,7 @@ export const useGraphqlQuery = (options) => {
 	
 	return useFetch("https://graphql.datocms.com", {
 		key,
+		lazy: true,
 		method: "POST",
 		headers: {
 			Authorization: `Bearer ${runtimeConfig.public.datoCmsToken}`,
