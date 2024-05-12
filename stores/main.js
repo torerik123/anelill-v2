@@ -27,18 +27,19 @@ export const useMainStore = defineStore('main', {
 		async setHeaderContent() {
 			const query = `query logo {
 				home {
-					logo {
-						responsiveImage(imgixParams: {fm: webp, auto=compress}) {
-							alt
-							src
-							sizes
-							srcSet
-							webpSrcSet
-							aspectRatio
-						}
-					}
+				logo {
+					responsiveImage {
+					alt
+					src
+					sizes
+					srcSet
+					webpSrcSet
+					aspectRatio
+				  }
 				}
-			}`
+			  }			
+			}
+			`
 	
 			const { data: response } = await useGraphqlQuery({ query })
 			
