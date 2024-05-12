@@ -24,6 +24,7 @@
 						<v-col cols="12">
 							<v-text-field 
 								label="Name"
+								name="name"
 								v-model="name" 
 								required 
 								variant="solo" 
@@ -37,7 +38,8 @@
 					<v-row dense no-gutters class="">
 						<v-col cols="12">
 							<v-text-field 
-								label="Email" 
+								label="Email"
+								name="email" 
 								v-model="email" 
 								required 
 								variant="solo" 
@@ -51,6 +53,7 @@
 						<v-col cols="12">
 							<v-textarea 
 								label="Message"
+								name="message"
 								v-model="message"
 								required 
 								variant="solo" 
@@ -80,7 +83,7 @@
 		</v-sheet>
 	</v-lazy>
 </template>
-
+	
 <script>
 export default {
 	name: "ContactForm",
@@ -133,3 +136,10 @@ export default {
 	}
 }
 </script>
+
+<style>
+/* fix low contrast accessibility issue  */
+.v-label {
+	opacity: var(--v-high-emphasis-opacity) !important; 
+}
+</style>

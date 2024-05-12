@@ -1,8 +1,14 @@
 <template>
 	<div>
 		<v-navigation-drawer app v-model="drawer" temporary>
-			<v-list nav>
-				<v-list-item>
+			<v-list 
+				nav
+				role="list"
+			>
+				<v-list-item 
+					role="listitem"
+					aria-label="home"
+				>
 					<v-list-item-title>
 						<v-hover v-slot="{ hover }">
 							<v-img 
@@ -24,17 +30,29 @@
 					</v-list-item-title>
 				</v-list-item>
 
-				<v-list-item @click="$router.push('/about')">
+				<v-list-item 
+					@click="$router.push('/about')"
+					role="listitem"
+					aria-label="about"
+				>
 					<v-list-item-title style="text-align: center;" class="text-uppercase">
 						About
 					</v-list-item-title>
 				</v-list-item>
-				<v-list-item @click="$router.push('/gallery')">
+				<v-list-item 
+					@click="$router.push('/gallery')"
+					role="listitem"
+					aria-label="gallery"
+				>
 					<v-list-item-title style="text-align: center;" class="text-uppercase">
 						Gallery
 					</v-list-item-title>
 				</v-list-item>
-				<v-list-item @click="$router.push('/contact')">
+				<v-list-item 
+					@click="$router.push('/contact')"
+					role="listitem"
+					aria-label="contact"
+				>
 					<v-list-item-title style="text-align: center;" class="text-uppercase">
 						Contact
 					</v-list-item-title>
@@ -106,6 +124,8 @@
 					v-if="$vuetify.display.xs"  
 					@click.stop="drawer = !drawer"
 					class="mx-0 mr-2"
+					id="menu"
+					aria-label="menu"
 				></v-app-bar-nav-icon>
 			</ClientOnly>
 

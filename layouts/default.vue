@@ -11,13 +11,9 @@
 </template>
 
 <script setup>
-// INITIAL SCORE: 
-// 32 - Performance
-
 const { setAllImages } = useMainStore()
 setAllImages()
 
-// import meta type from nuxt 
 const getSeoMeta = async () => {
 	const query = `query getSeoMeta {
 						_site {

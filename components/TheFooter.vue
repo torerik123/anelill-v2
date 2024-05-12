@@ -11,7 +11,12 @@
 					large 
 					link
 					variant="text" 
-					href="https://www.instagram.com/byanelill" target="_blank"><v-icon>mdi-instagram</v-icon></v-btn>
+					href="https://www.instagram.com/byanelill" 
+					target="_blank"
+					aria-label="instagram-link"
+				>
+						<v-icon>mdi-instagram</v-icon>
+					</v-btn>
 			</v-col>
 		</v-row>
 	</v-footer>
