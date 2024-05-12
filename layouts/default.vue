@@ -6,7 +6,9 @@
 				<slot></slot>
 			</v-container>
 		</v-main>
-		<TheFooter class="app"></TheFooter>
+		<v-lazy>
+			<TheFooter class="app"></TheFooter>
+		</v-lazy>
 	</v-app>
 </template>
 

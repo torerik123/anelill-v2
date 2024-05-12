@@ -2,13 +2,13 @@ import { useGraphqlQuery } from '~~/composables/useGraphqlQuery.js'
 
 export const useMainStore = defineStore('main', {
 	state: () => ({
-		logo: { src: "", sizes: "", srcSet: "", alt: "site-logo"},
+		logo: { src: "", sizes: "", webpSrcSet: "", srcSet: "", alt: "site-logo"},
 		images: [],
 		headerImages: {
-			home: { src: "", sizes: "", srcSet: "", alt: "site-header-home", base64: ""},
-			about: { src: "", sizes: "", srcSet: "", alt: "site-header-about", base64: ""},
-			gallery: { src: "", sizes: "", srcSet: "", alt: "site-header-gallery", base64: "" },
-			contact: { src: "", sizes: "", srcSet: "", alt: "site-header-contact", base64: "" },
+			home: { src: "", sizes: "", webpSrcSet: "", srcSet: "", alt: "site-header-home", base64: "", aspectRatio: ""},
+			about: { src: "", sizes: "", webpSrcSet: "", srcSet: "", alt: "site-header-about", base64: "", aspectRatio: ""},
+			gallery: { src: "", sizes: "", webpSrcSet: "", srcSet: "", alt: "site-header-gallery", base64: "", aspectRatio: ""},
+			contact: { src: "", sizes: "", webpSrcSet: "", srcSet: "", alt: "site-header-contact", base64: "",  aspectRatio: ""},
 		},
 		introText: "",
 		aboutText: "",
@@ -28,11 +28,13 @@ export const useMainStore = defineStore('main', {
 			const query = `query logo {
 				home {
 					logo {
-						responsiveImage(imgixParams: {auto: format}) {
+						responsiveImage(imgixParams: {fm: webp, auto=compress}) {
 							alt
 							src
 							sizes
+							srcSet
 							webpSrcSet
+							aspectRatio
 						}
 					}
 				}
@@ -44,7 +46,8 @@ export const useMainStore = defineStore('main', {
 				this.logo = {
 					src: response.value?.home?.logo?.responsiveImage?.src,
 					sizes: response.value?.home?.logo?.responsiveImage?.sizes,
-					srcSet: response.value?.home?.logo.responsiveImage?.webpSrcSet,
+					srcSet: response.value?.home?.logo.responsiveImage?.srcSet,
+					webpSrcSet: response.value?.home?.logo.responsiveImage?.webpSrcSet,
 					alt: response.value?.home?.logo?.responsiveImage?.alt,
 				}
 			}
@@ -52,28 +55,21 @@ export const useMainStore = defineStore('main', {
 
 		async setMainPageContent() {
 			const query = `
-				query getHeaderImg {
-						home {
-							logo {
-								responsiveImage(imgixParams: {auto: format}) {
-									src
-									sizes
-									webpSrcSet
-									base64
-								}
-							}
-							tagline
-							bannerImage {
-							responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000 }) {
-									alt
-									src
-									sizes
-									webpSrcSet
-									base64
-								}
-							}
+			query getHeaderImg {
+				home {
+					bannerImage {
+					responsiveImage(imgixParams: {fm: webp, auto: compress, maxH: 600, maxW: 600 }) {
+							alt
+							src
+							sizes
+							srcSet
+							webpSrcSet
+							base64
+							aspectRatio
 						}
-					}`
+					}
+				}
+			}`
 
 			const { data:response } = await useGraphqlQuery({ query });
 
@@ -81,9 +77,11 @@ export const useMainStore = defineStore('main', {
 				this.headerImages.home = {
 					src: response.value?.home?.bannerImage?.responsiveImage?.src,
 					sizes: response.value?.home?.bannerImage?.responsiveImage?.sizes,
-					srcSet: response.value?.home?.bannerImage?.responsiveImage?.webpSrcSet,
+					srcSet: response.value?.home?.bannerImage?.responsiveImage?.srcSet,
+					webpSrcSet: response.value?.home?.bannerImage?.responsiveImage?.webpSrcSet,
 					alt: response.value?.home?.bannerImage?.responsiveImage?.alt,
 					base64: response.value?.home?.bannerImage?.responsiveImage?.base64,
+					aspectRatio: response.value?.home?.bannerImage?.responsiveImage?.aspectRatio,
 				}
 			}
 		},
@@ -93,12 +91,14 @@ export const useMainStore = defineStore('main', {
 				query galleryImages {
 					gallery {
 						headerImage {
-						responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000}) {
+						responsiveImage(imgixParams: {fm: webp, auto: compress, maxH: 1000, maxW: 1000}) {
 							alt
 							src
 							sizes
+							srcSet
 							webpSrcSet
 							base64
+							aspectRatio
 							}
 						}
 					}
@@ -112,9 +112,10 @@ export const useMainStore = defineStore('main', {
 						image {
 							alt
 							id
-							responsiveImage(imgixParams: {auto: compress, maxH: 1000, maxW: 1000}) {
+							responsiveImage(imgixParams: {fm: webp, auto: compress, maxH: 1000, maxW: 1000}) {
 								src
 								sizes
+								srcSet
 								webpSrcSet
 								base64
 							}
@@ -128,7 +129,8 @@ export const useMainStore = defineStore('main', {
 					this.headerImages.gallery = {
 						src: response.value.gallery.headerImage.responsiveImage.src,
 						sizes: response.value.gallery.headerImage.responsiveImage.sizes,
-						srcSet: response.value.gallery.headerImage.responsiveImage.webpSrcSet,
+						srcSet: response.value.gallery.headerImage.responsiveImage.srcSet,
+						webpSrcSet: response.value.gallery.headerImage.responsiveImage.webpSrcSet,
 						alt: response.value.gallery.headerImage.responsiveImage?.alt,
 						base64: response.value.gallery.headerImage.responsiveImage?.base64,
 					}
@@ -142,11 +144,13 @@ export const useMainStore = defineStore('main', {
 				query headerImage {
 					about {
 						headerImage {
-							responsiveImage(imgixParams: {auto: format}) {
+							responsiveImage(imgixParams: {fm: webp, auto: compress }) {
 							alt
 							src
 							srcSet
+							webpSrcSet
 							base64
+							aspectRatio
 							}
 						}
 						text
@@ -172,9 +176,10 @@ export const useMainStore = defineStore('main', {
 				query headerImg {
 					contact {
 						headerImage {
-							responsiveImage(imgixParams: {auto: format}) {
+							responsiveImage(imgixParams: {, fm: webp, auto: compress }) {
 							alt	
 							src
+							srcSet
 							webpSrcSet
 							base64
 							}
@@ -188,7 +193,9 @@ export const useMainStore = defineStore('main', {
 			if (response.value) {
 				this.headerImages.contact = {
 					src: response.value?.contact?.headerImage?.responsiveImage?.src,
-					srcSet: response.value?.contact?.headerImage?.responsiveImage?.webpSrcSet,
+					srcSet: response.value?.contact?.headerImage?.responsiveImage?.srcSet,
+					webpSrcSet: response.value?.contact?.headerImage?.responsiveImage?.webpSrcSet,
+					srcSet: response.value?.contact?.headerImage?.responsiveImage?.srcSet,
 					alt: response.value?.contact?.headerImage?.responsiveImage?.alt,
 					base64: response.value?.contact?.headerImage?.responsiveImage?.base64,
 				}

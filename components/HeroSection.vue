@@ -6,8 +6,12 @@
 		}"	
 		transition="fade-transition"
 	>
-		<v-sheet class="pt-10 overflow-hidden" height="auto">
+		<v-sheet 
+			class="pt-10 overflow-hidden" 
+			height="auto"
+		>
 			<v-img
+				:aspect-ratio="headerImages.home.aspectRatio"
 				width="100%"
 				height="100%"
 				min-height="40vh"
@@ -18,9 +22,10 @@
 				:lazy-src="headerImages.home.base64"
 				transition="slide-y-transition"
 				cover
+				eager
 			>
 				<template #sources>
-					<source :srcset="headerImages.home.srcSet">
+					<source :srcset="headerImages.home?.webpSrcSet">
 				</template>
 
 				<template #placeholder>

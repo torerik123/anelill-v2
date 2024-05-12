@@ -15,17 +15,18 @@
 						v-bind="props"
 						:style="isHovering ? 'cursor: pointer;' : ''" 
 						@click="viewImg"
-						class=""
 						:src="image.src"
-						:sizes="image.sizes"
+						:sizes="image?.sizes"
+						:srcset="image?.srcSet"
 						:alt="image?.alt"
-						:lazy-src="image?.base64"	
+						:lazy-src="image?.base64"
+						:aspect-ratio="image?.aspectRatio"	
 						max-width="300"
 						height="auto"
 						contain
 					>
 					<template #sources>
-						<source :srcset="image.srcSet">
+						<source :srcset="image?.webpSrcSet">
 					</template>
 					</v-img>
 				</template>
